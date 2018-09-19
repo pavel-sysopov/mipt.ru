@@ -2,38 +2,32 @@ import turtle
 import math
 
 turtle.shape('turtle')
-radian = 6.28319
 
 def polygon(n, a):
     angle = 360 / n
-    R = a / (2 * math.sin(radian / (2 * n)))
+    R = a / (2 * math.sin(math.radians(360 / (2 * n))))
     turtle.penup()
-    turtle.setpos(R, -R)
+    turtle.setpos(R, 0)
     turtle.pendown()
-    for i in range(n):
-        turtle.lt(angle)
+    turtle.lt(180 - (180 - angle) / 2)
+    count = 1
+    while count <= n:
         turtle.fd(a)
-
+        if count != n:
+            turtle.lt(angle)
+        count += 1
 
 
 count = 1
-n = 4
-a = 50
-polygon(n, a)
-turtle.setpos(0,0)
-turtle.fd(100)
+(n, a) = (3, 30)
 
-#turtle.penup()
-#turtle.rt(45)
-#turtle.fd(10)
-#turtle.lt(45)
-#turtle.pendown()
-
-
-#while count <= 10:
-#    polygon(n, a)
-#    n += 1
-#    a += 5
-#    count += 1
+while count <= 10:
+    polygon(n, a)
+    n += 1
+    a += 5
+    count += 1
+    turtle.penup()
+    turtle.home()
+    turtle.pendown()
 
 turtle.done()
